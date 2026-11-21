@@ -1,0 +1,146 @@
+/* Layout v2 for Idea Lab pages ("layout": "v2" in ideas/<slug>.json).
+   Each page sets its own palette with CSS variables on <body> (from "theme"),
+   so every test looks like it belongs in its own category. v1 pages use site.css. */
+:root {
+  --bg: #fbfaf7;
+  --ink: #1b1d22;
+  --muted: #5b6170;
+  --line: #e4e1d8;
+  --card: #ffffff;
+  --tint: #f2efe7;
+  --accent: #0b5d4b;
+  --accent-ink: #ffffff;
+  --display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 17px/1.55 var(--body);
+}
+body.display-serif { --display: var(--serif); }
+a { color: var(--accent); }
+.wrap2 { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+.narrow { max-width: 760px; }
+
+/* header */
+.v2-top { border-bottom: 1px solid var(--line); background: var(--bg); }
+.v2-top .wrap2 { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 64px; }
+.v2-brand { text-decoration: none; color: var(--ink); line-height: 1.15; }
+.v2-brand b { display: block; font-family: var(--display); font-size: 19px; letter-spacing: -0.01em; }
+.v2-brand small { color: var(--muted); font-size: 12.5px; }
+
+/* buttons */
+button.cta {
+  appearance: none; border: 0; cursor: pointer;
+  background: var(--accent); color: var(--accent-ink);
+  font: inherit; font-weight: 650; font-size: 18px;
+  padding: 15px 24px; border-radius: 12px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08), 0 6px 18px -8px var(--accent);
+}
+button.cta:hover { filter: brightness(1.07); }
+button.cta:focus-visible, input:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+button.cta-sm { font-size: 15px; padding: 9px 14px; border-radius: 10px; box-shadow: none; white-space: nowrap; }
+.cta-note { color: var(--muted); font-size: 15px; margin: 12px 0 0; }
+
+/* hero */
+.v2-hero { padding: 36px 0 40px; }
+.hero-grid { display: grid; gap: 32px; align-items: center; }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: 13px; font-weight: 700; color: var(--accent); margin: 0 0 12px; }
+.v2-hero h1 { font-family: var(--display); font-size: clamp(34px, 6.4vw, 54px); line-height: 1.06; letter-spacing: -0.025em; margin: 0 0 16px; }
+.v2-hero .lede { font-size: 19px; color: var(--muted); margin: 0 0 24px; max-width: 32em; }
+ul.checks { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 8px; }
+ul.checks li { position: relative; padding-left: 28px; font-size: 15.5px; }
+ul.checks li::before {
+  content: ""; position: absolute; left: 0; top: 3px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3.2 3L15 7' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat;
+}
+.hero-visual { min-width: 0; }
+
+/* sections */
+.v2-sec { padding: 44px 0; border-top: 1px solid var(--line); }
+.v2-sec.tint { background: var(--tint); border-top: 0; }
+.v2-sec h2 { font-family: var(--display); font-size: clamp(26px, 4vw, 34px); letter-spacing: -0.02em; line-height: 1.15; margin: 0 0 20px; }
+.v2-sec .sub { color: var(--muted); margin: -8px 0 22px; max-width: 40em; }
+
+ol.steps3 { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: s; }
+ol.steps3 li { counter-increment: s; background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; }
+ol.steps3 li::before {
+  content: counter(s); display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink); font-weight: 700; font-size: 15px; margin-bottom: 10px;
+}
+ol.steps3 b { display: block; font-size: 18px; margin-bottom: 4px; }
+ol.steps3 span { color: var(--muted); }
+
+.price-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 24px;
+  max-width: 560px; box-shadow: 0 18px 40px -28px rgba(0,0,0,.35);
+}
+.price-card .big { font-family: var(--display); font-size: 52px; font-weight: 700; letter-spacing: -0.03em; line-height: 1; margin: 4px 0 2px; }
+.price-card .per { color: var(--muted); font-size: 15px; margin: 0 0 6px; }
+.price-card ul.checks { margin: 18px 0 22px; }
+.price-card button.cta { width: 100%; }
+.price-card .cta-note { text-align: center; }
+
+details { border-top: 1px solid var(--line); padding: 14px 0; }
+details:first-of-type { border-top: 0; }
+summary { cursor: pointer; font-weight: 600; font-size: 17.5px; }
+details p { color: var(--muted); margin: 8px 0 0; }
+
+.v2-final { text-align: center; padding: 52px 0; }
+.v2-final h2 { margin-bottom: 8px; }
+.v2-final p { color: var(--muted); margin: 0 0 22px; }
+
+.v2-foot { border-top: 1px solid var(--line); padding: 26px 0 110px; color: var(--muted); font-size: 14px; }
+.v2-foot a { color: inherit; }
+
+/* sticky buy bar (phones), shown once the hero button scrolls away */
+.sticky-cta {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  background: var(--card); border-top: 1px solid var(--line);
+  box-shadow: 0 -8px 24px -16px rgba(0,0,0,.4);
+  transform: translateY(110%); transition: transform .2s ease;
+}
+.sticky-cta.show { transform: none; }
+.sticky-cta .s-price { font-weight: 700; font-size: 18px; line-height: 1.1; }
+.sticky-cta .s-price small { display: block; font-weight: 400; color: var(--muted); font-size: 12.5px; }
+.sticky-cta button.cta { font-size: 16px; padding: 12px 16px; box-shadow: none; }
+
+/* waitlist dialog (same markup as v1) */
+dialog { border: 1px solid var(--line); border-radius: 16px; background: var(--card); color: var(--ink); padding: 0; width: min(440px, calc(100vw - 32px)); }
+dialog::backdrop { background: rgba(0, 0, 0, 0.55); }
+.dlg { padding: 22px; }
+.dlg h3 { margin: 0 0 8px; font-size: 22px; letter-spacing: -0.01em; font-family: var(--display); }
+.dlg p { margin: 0 0 14px; color: var(--muted); }
+.dlg label { font-size: 14px; font-weight: 600; display: block; margin-bottom: 6px; }
+.dlg input[type="email"] { width: 100%; font: inherit; padding: 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); }
+.dlg .row { display: flex; gap: 10px; margin-top: 14px; }
+.dlg button.cta { flex: 1; font-size: 16px; padding: 12px; box-shadow: none; }
+.dlg button.ghost { appearance: none; background: none; border: 1px solid var(--line); color: var(--muted); font: inherit; border-radius: 10px; padding: 12px 14px; cursor: pointer; }
+.dlg .fine { font-size: 13px; margin-top: 12px; }
+.hp { position: absolute; left: -9999px; }
+
+/* fallback visual when a page has no visual file: the v1 "example" text as a card */
+.spec-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; font: 14px/1.6 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); white-space: pre-wrap; }
+
+@media (min-width: 900px) {
+  .v2-hero { padding: 56px 0 64px; }
+  .hero-grid { grid-template-columns: 1.05fr 1fr; gap: 56px; }
+  ol.steps3 { grid-template-columns: repeat(3, 1fr); }
+  .sticky-cta { display: none; }
+  .v2-foot { padding-bottom: 40px; }
+}
+@media (max-width: 899px) {
+  .v2-top button.cta-sm { display: none; }
+  .v2-top .wrap2 { min-height: 56px; }
+  .v2-hero { padding-top: 24px; }
+  .eyebrow { display: none; } /* the header already names the product */
+  .v2-hero .lede { font-size: 17px; margin-bottom: 20px; }
+  .v2-hero button.cta { width: 100%; }
+  ul.checks { margin-top: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .sticky-cta { transition: none; } html { scroll-behavior: auto; } }
